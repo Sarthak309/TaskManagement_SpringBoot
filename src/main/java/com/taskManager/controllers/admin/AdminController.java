@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 
@@ -62,5 +64,10 @@ public class AdminController {
         TaskDto updateTask = adminService.updateTask(id,taskDto);
         if(updateTask == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(updateTask);
+    }
+
+    @GetMapping("tasks/search/{title}")
+    public ResponseEntity<List<TaskDto>> searchTaskByTitle(@PathVariable String title){
+        return ResponseEntity.ok(adminService.searchTaskByTitle(title));
     }
 }
