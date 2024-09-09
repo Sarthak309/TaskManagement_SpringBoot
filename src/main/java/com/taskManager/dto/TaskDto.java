@@ -21,7 +21,7 @@ public class TaskDto {
 
     private TaskStatus taskStatus;
 
-    private Long employee;
+    private Long employeeId;
 
     private String employeeName;
 

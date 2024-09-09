@@ -32,21 +32,6 @@ public class User implements UserDetails {
 
     private UserRole userRole;
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -91,13 +76,5 @@ public class User implements UserDetails {
         userDto.setPassword(password);
         userDto.setUserRole(userRole);
         return userDto;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public UserRole getUserRole() {
-        return userRole;
     }
 }

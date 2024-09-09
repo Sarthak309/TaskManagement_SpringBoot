@@ -11,15 +11,4 @@ public class AuthenticationResponse {
     private Long userId;
     private UserRole userRole;
 
-    public void setJwt(String jwt) {
-        this.jwt = jwt;
     }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
-    }
-}

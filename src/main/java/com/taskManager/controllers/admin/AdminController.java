@@ -6,8 +6,11 @@ import com.taskManager.services.admin.AdminService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,5 +37,30 @@ public class AdminController {
         if(createdTaskDto == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 
         return ResponseEntity.status(HttpStatus.CREATED).body(createdTaskDto);
+    }
+
+    @GetMapping("/tasks")
+    public ResponseEntity<?> getTasks(){
+        return ResponseEntity.ok(adminService.getAllTask());
+    }
+
+    @DeleteMapping("/task/{id}")
+    public ResponseEntity<Void> deleteTask(@PathVariable Long id){
+        adminService.deleteTask(id);
+        return ResponseEntity.ok(null);
+    }
+
+    @GetMapping("/task/{id}")
+    public ResponseEntity<TaskDto> getTaskById(@PathVariable Long id){
+        TaskDto taskDto = adminService.getTaskById(id);
+        if(taskDto == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(taskDto);
+    }
+
+    @PutMapping("/task/{id}")
+    public ResponseEntity<?> updateTask(@PathVariable Long id, @RequestBody TaskDto taskDto){
+        TaskDto updateTask = adminService.updateTask(id,taskDto);
+        if(updateTask == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(updateTask);
     }
 }

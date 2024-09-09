@@ -15,7 +15,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
@@ -49,7 +48,7 @@ public class Task {
         taskDto.setTitle(title);
         taskDto.setDescription(description);
         taskDto.setEmployeeName(user.getName());
-        taskDto.setEmployee(user.getId());
+        taskDto.setEmployeeId(user.getId());
         taskDto.setTaskStatus(taskStatus);
         taskDto.setDueDate(dueDate);
         taskDto.setPriority(priority);
