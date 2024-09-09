@@ -83,7 +83,7 @@ public class User implements UserDetails {
         return true;
     }
 
-    public UserDto getUSerDto(){
+    public UserDto getUserDto(){
         UserDto userDto = new UserDto();
         userDto.setId(id);
         userDto.setName(name);
