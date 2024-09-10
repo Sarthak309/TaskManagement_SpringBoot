@@ -104,7 +104,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     private TaskStatus mapStringToTaskStatus(String status){
-        return switch(status){
+        return switch(status.toUpperCase()){
             case "PENDING" -> TaskStatus.PENDING;
             case "INPROGRESS" -> TaskStatus.INPROGRESS;
             case "COMPLETED" -> TaskStatus.COMPLETED;
