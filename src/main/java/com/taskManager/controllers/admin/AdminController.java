@@ -1,6 +1,7 @@
 package com.taskManager.controllers.admin;
 
 
+import com.taskManager.dto.CommentDto;
 import com.taskManager.dto.TaskDto;
 import com.taskManager.services.admin.AdminService;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -70,4 +72,13 @@ public class AdminController {
     public ResponseEntity<List<TaskDto>> searchTaskByTitle(@PathVariable String title){
         return ResponseEntity.ok(adminService.searchTaskByTitle(title));
     }
+
+    @PostMapping("/task/comment/{taskId}")
+    public ResponseEntity<CommentDto> createComment(@PathVariable Long taskId, @RequestParam String content){
+        CommentDto createdCommentDto = adminService.createComment(taskId, content);
+        if(createdCommentDto == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdCommentDto);
+    }
+
 }
